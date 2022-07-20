@@ -23,7 +23,7 @@ class PostSerializer(serializers.ModelSerializer):
                 'Images with a width larger than 4096 pixels are not allowed!'
             )
         return value
-    
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
