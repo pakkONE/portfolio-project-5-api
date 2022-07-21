@@ -68,7 +68,6 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
-    'https://8000-pakkone-portfolioprojec-0cqszatspzv.ws-eu54.gitpod.io',
 ]
 
 # Application definition
@@ -128,7 +127,10 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
-CSRF_TRUSTED_ORIGINS = [os.environ.get('CLIENT_ORIGIN_DEV')]
+CSRF_TRUSTED_ORIGINS = [os.environ.get(
+    'CLIENT_ORIGIN_DEV',
+    'CLIENT_ORIGIN',
+    )]
 
 ROOT_URLCONF = 'pp5_api.urls'
 

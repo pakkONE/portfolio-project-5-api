@@ -22,7 +22,7 @@ This unnamed project (for now) is a content sharing platform that connects peopl
 | profiles  | user     | edit my profile                | update my profile                                                                 | Update profile                               |
 
 ## Entity Relationship Diagram
-![ERD Diagram](https://res.cloudinary.com/dv6cgny0t/image/upload/v1658299778/ERD_PP5_d4hrtg.png)
+![ERD Diagram](https://res.cloudinary.com/dv6cgny0t/image/upload/v1658412279/ERD_PP5_wdwjhc.png)
 
 ## CRUD breakdown of Models
 | model     | endpoints                    | create        | retrieve | update | delete | filter                   | text search |
@@ -32,3 +32,8 @@ This unnamed project (for now) is a content sharing platform that connects peopl
 | comments  | comments/<br>comments/:id/   | yes           | yes      | yes    | yes    | post                     | no          |
 | likes     | likes/<br>likes/:id/         | yes           | yes      | no     | yes    | no                       | no          |
 | posts     | posts/<br>posts/:id/         | yes           | yes      | yes    | yes    | profile                  | title       |
+
+## Tests
+
+### Manual Testing
+- 
