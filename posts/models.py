@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
+    """
+    Post model that connects the user to the User model
+    User also has choices for tagging their posts
+    a default image has been provided to access image.url
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -35,6 +40,9 @@ class Post(models.Model):
     )
 
     class Meta:
+        """
+        Orders the posts by created date and latest first
+        """
         ordering = ['-created_at']
 
     def __str__(self):

@@ -5,6 +5,9 @@ from .models import Like
 
 
 class LikeList(generics.ListCreateAPIView):
+    """
+    User can create a like for a post
+    """
     queryset = Like.objects.all().order_by('-created_at')
     serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -14,6 +17,9 @@ class LikeList(generics.ListCreateAPIView):
 
 
 class LikeDetail(generics.RetrieveDestroyAPIView):
+    """
+    Provides the user ability to remove a like from a post
+    """
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
     permission_classes = [IsOwnerOrReadOnly]

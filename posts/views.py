@@ -7,6 +7,9 @@ from .serializers import PostSerializer
 
 
 class PostList(generics.ListCreateAPIView):
+    """
+    Lists posts and provides user to create post
+    """
     queryset = Post.objects.annotate(
         likes_count=Count('likes', distinct=True)
     ).order_by('-created_at')
@@ -27,6 +30,10 @@ class PostList(generics.ListCreateAPIView):
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Allowes the owner of a post to retrieve,
+    update or delete the post
+    """
     queryset = Post.objects.annotate(
         likes_count=Count('likes', distinct=True)
     ).order_by('-created_at')
