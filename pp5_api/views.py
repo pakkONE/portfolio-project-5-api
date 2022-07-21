@@ -4,3 +4,4 @@ from rest_framework.response import Response
 @api_view()
 def hello_world(request):
     return Response({"message": "Hello, welcome to my PP5 API!"})
+    

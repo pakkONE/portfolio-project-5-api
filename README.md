@@ -36,4 +36,72 @@ This unnamed project (for now) is a content sharing platform that connects peopl
 ## Tests
 
 ### Manual Testing
-- 
+- Profiles app:
+    - Visitor can:
+        - View all Profiles but not Create, update or delete any
+    - Authenticated user can:
+        - Delete their own profiles
+
+- Posts app:
+    - Visitor can:
+        - View all posts but not Create, update or delete any
+    - Authenticated user can:
+        - Create posts
+        - Edit or delete their own posts
+
+- Comments app:
+    - Visitor can:
+        - View all comments but not Create, update or delete any
+    - Authenticated user can:
+        - Create comments on posts
+        - Edit or delete their own comments
+
+- Likes app:
+    - Visitor can:
+        - View all likes but not Create or delete
+    - Authenticated user can:
+        - Create likes on posts
+        - Delete their own likes
+
+## Deployment
+- Create env.py file in root folder and add it to .gitignore
+- Set the environment variables:
+    - CLIENT_ORIGIN
+    - CLOUDINARY_URL
+    - DATABASE_URL
+    - DISABLE_COLLECTSTATIC to '1'
+    - SECRET_KEY
+- Installed following apps:
+    - For sessiontokens during development:
+        - dj-rest-auth
+            - run `pip install dj-rest-auth` in the terminal
+            - added it to installed apps
+            - set the projectlevel urls.py to include the app urls
+            - migrated the database
+    - For ability to register users:
+        - dj-rest-auth
+            - run `pip install 'dj-rest-auth[with_social]'` in the terminal
+            - added it to installed apps
+            - Set SITE_ID to '1' in settings.py
+            - included the urls in projectlevel urls.py
+    - To set up JWT tokens with django-all-auth:
+        - djangorestframework-simplejwt
+            - run `pip install djangorestframework-simplejwt` in the terminal
+            - added it to installed apps
+            - added the necesarry configs to settings.py
+            - migrated database again
+    - For handling database connection:
+        - dj-database-url
+            - run `pip install dj-database-url` in the terminal
+        - psycopg2
+            - run `pip install psycopg2` in the terminal
+    - To configure CORS headers:
+        - django-cors-headers
+            - run `pip install django-cors-headers` in the terminal
+            - made the necesarry configs to settings.py
+            - set ALLOWED_ORIGINS
+- Set ALLOWED_HOSTS variable
+- Set default renderer to JSON
+- Created Procfile with web command as well as release commands
+- Generated requirements.txt
+- Deployed to Heroku
