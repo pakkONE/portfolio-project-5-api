@@ -14,6 +14,26 @@ class Post(models.Model):
         blank=True
         )
 
+    FOOTBALL = 'FO'
+    ICEHOCKEY = 'IH'
+    GOLF = 'GO'
+    TENNIS = 'TE'
+    PADEL = 'PA'
+    OTHER = 'OT'
+    TAGS_CHOICES = [
+        (FOOTBALL, 'Football'),
+        (ICEHOCKEY, 'Ice Hcckey'),
+        (GOLF, 'Golf'),
+        (TENNIS, 'Tennis'),
+        (PADEL, 'Padel'),
+        (OTHER, 'Other'),
+    ]
+    tags = models.CharField(
+        max_length=2,
+        choices=TAGS_CHOICES,
+        default=FOOTBALL,
+    )
+
     class Meta:
         ordering = ['-created_at']
 
