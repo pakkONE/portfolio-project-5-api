@@ -38,9 +38,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    'DATETIME_FORMAT': '%Y %b %d %H:%M'
+    'DATETIME_FORMAT': '%Y %b %d %H:%M',
 }
-
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
         'rest_framework.renderers.JSONRenderer',
@@ -69,6 +68,29 @@ ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
 ]
+
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV'),
+        os.environ.get('CLIENT_ORIGIN_LOCALDEV')
+    ]
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(
+        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE
+    ).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+
+CSRF_TRUSTED_ORIGINS = [
+    os.environ.get('CLIENT_ORIGIN'),
+    os.environ.get('CLIENT_ORIGIN_DEV'),
+    os.environ.get('CLIENT_ORIGIN_LOCALDEV')
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -100,9 +122,6 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-
-CORS_ALLOW_CREDENTIALS = True
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -112,25 +131,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN'),
-        os.environ.get('CLIENT_ORIGIN_DEV')
-    ]
-
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(
-        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
-
-CSRF_TRUSTED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN'),
-    os.environ.get('CLIENT_ORIGIN_DEV')
 ]
 
 ROOT_URLCONF = 'pp5_api.urls'
