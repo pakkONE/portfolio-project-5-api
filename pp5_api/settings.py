@@ -85,9 +85,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN'),
-    os.environ.get('CLIENT_ORIGIN_DEV'),
-    os.environ.get('CLIENT_ORIGIN_LOCALDEV')
+    os.environ.get('CLIENT_ORIGIN')
 ]
 
 CORS_ALLOW_CREDENTIALS = True
