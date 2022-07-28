@@ -85,6 +85,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [os.environ.get(
+    'CLIENT_ORIGIN_DEV',
     'CLIENT_ORIGIN',
     )]
 
