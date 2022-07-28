@@ -85,8 +85,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN'),
-    ALLOWED_HOSTS
+    'https://pp5-react.herokuapp.com',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
