@@ -84,10 +84,8 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
-CSRF_TRUSTED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN'),
-    os.environ.get('CLIENT_ORIGIN_DEV')
-]
+CSRF_TRUSTED_ORIGINS = os.environ.get('CLIENT_ORIGIN'), os.environ.get('CLIENT_ORIGIN_DEV')
+
 
 CORS_ALLOW_CREDENTIALS = True
 
