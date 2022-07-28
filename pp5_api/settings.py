@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import re
 import os
 import dj_database_url
+from corsheaders.defaults import default_headers
 
 if os.path.exists('env.py'):
     import env
@@ -78,6 +78,10 @@ elif 'CLIENT_ORIGIN' in os.environ:
         os.environ.get('CLIENT_ORIGIN'),
         os.environ.get('CLIENT_ORIGIN_DEV')
     ]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "my-custom-header",
+]
 
 CSRF_TRUSTED_ORIGINS = [os.environ.get(
     'CLIENT_ORIGIN_DEV',
