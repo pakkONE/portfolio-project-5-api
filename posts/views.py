@@ -11,7 +11,7 @@ class PostList(generics.ListCreateAPIView):
     Lists posts and provides user to create post
     """
     queryset = Post.objects.annotate(
-        likes_count=Count('likes', distinct=True)
+        likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
     serializer_class = PostSerializer
@@ -36,7 +36,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     update or delete the post
     """
     queryset = Post.objects.annotate(
-        likes_count=Count('likes', distinct=True)
+        likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
     serializer_class = PostSerializer
