@@ -12,6 +12,7 @@ class PostList(generics.ListCreateAPIView):
     """
     queryset = Post.objects.annotate(
         likes_count=Count('likes', distinct=True)
+        comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -23,7 +24,7 @@ class PostList(generics.ListCreateAPIView):
     filterset_fields = [
         'likes__owner__profile',
     ]
-    search_fields = ['title']
+    search_fields = ['title', 'owner__username',]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -36,6 +37,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Post.objects.annotate(
         likes_count=Count('likes', distinct=True)
+        comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
