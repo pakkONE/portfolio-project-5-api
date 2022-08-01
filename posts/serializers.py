@@ -1,3 +1,4 @@
+from tomlkit import value
 from rest_framework import serializers
 from likes.models import Like
 from .models import Post
@@ -32,6 +33,7 @@ class PostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Images with a width larger than 4096 pixels are not allowed!'
             )
+        return image
 
     def get_is_owner(self, obj):
         """
