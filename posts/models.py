@@ -27,7 +27,7 @@ class Post(models.Model):
     OTHER = 'OT'
     TAGS_CHOICES = [
         (FOOTBALL, 'Football'),
-        (ICEHOCKEY, 'Ice Hcckey'),
+        (ICEHOCKEY, 'Ice Hockey'),
         (GOLF, 'Golf'),
         (TENNIS, 'Tennis'),
         (PADEL, 'Padel'),

@@ -7,3 +7,7 @@ __pycache__/
 node_modules/
 .github/
 cloudinary_python.txt
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+db.sqlite3
