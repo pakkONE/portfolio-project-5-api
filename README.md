@@ -1,7 +1,7 @@
-# PP5 API
+# PP5 API - SportsTalk
 
 ## Project Description
-This unnamed project (for now) is a content sharing platform that connects people from all four corners of the earth to share knowledge in what they are passionate about. The platform is powered by a Django REST API and React.<br>This Readme contains only to the back end part and the front end part can be found [here](https://google.com/)
+SportsTalk is a content sharing platform that connects people from all four corners of the earth to share knowledge in what they are passionate about. The platform is powered by a Django REST API and React.<br>This Readme contains only to the back end part and the front end part can be found [here](https://github.com/pakkONE/portfolio-project-5-react)
 
 ## User stories
 | Category  | as a     | I want to                      | so that I can                                                                     | mapping API feature                          |
@@ -38,30 +38,43 @@ This unnamed project (for now) is a content sharing platform that connects peopl
 ### Manual Testing
 - Profiles app:
     - Visitor can:
-        - View all Profiles but not Create, update or delete any
+        - View all Profiles but not Create, update or delete any any profiles
     - Authenticated user can:
         - Delete their own profiles
 
 - Posts app:
     - Visitor can:
-        - View all posts but not Create, update or delete any
+        - View all posts but not Create, update or delete any posts
     - Authenticated user can:
         - Create posts
         - Edit or delete their own posts
+    - Images are being validated to be smaller than 4096pixels in width, height as well as 2MB in size. 
+        - File type is also being validates as only images are allowed
 
 - Comments app:
     - Visitor can:
-        - View all comments but not Create, update or delete any
+        - View all comments but not Create, update or delete any comments
     - Authenticated user can:
         - Create comments on posts
         - Edit or delete their own comments
 
 - Likes app:
     - Visitor can:
-        - View all likes but not Create or delete
+        - View all likes but not Create or delete any likes
     - Authenticated user can:
         - Create likes on posts
         - Delete their own likes
+
+### Bugs
+- I had issues with CORS and preflight headers.
+    - Solved it by adding following code in settings.py:
+        - At the top of the file, import following: 
+            - ```from corsheaders.defaults import default_headers, default_methods```
+        - Before INSTALLED_APPS, add the following code: 
+            - ```CORS_ALLOW_HEADERS = list(default_headers)```
+            - ```CORS_ALLOW_METHODS = list(default_methods)```
+- I couldn't upload images from the front end to the API and could for the life of me not understand why. I downgraded React, react-bootstrap and react-router-dom and the whole API to older versions just to make sure that it would work. 
+    - After two days of debugging I finally found out that I had not returned a value on the function validating the image in pp5_api/posts.serializers.py
 
 ## Deployment
 - Create env.py file in root folder and add it to .gitignore
@@ -105,3 +118,5 @@ This unnamed project (for now) is a content sharing platform that connects peopl
 - Created Procfile with web command as well as release commands
 - Generated requirements.txt
 - Deployed to Heroku
+
+The Live project API link can be found [here](https://pp5-api.herokuapp.com/)
